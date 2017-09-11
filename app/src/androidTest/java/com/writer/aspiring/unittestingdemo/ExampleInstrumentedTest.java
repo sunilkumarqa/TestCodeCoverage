@@ -29,7 +29,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest  {
+public class ExampleInstrumentedTest extends MainActivity  {
 
     @Rule
     public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -38,16 +38,17 @@ public class ExampleInstrumentedTest  {
 
     @Test
     public void checkText() {
-        String unMock[] = {"","Peter","Astrid","","Olivia","lincoln"};
-        String pwMock[] = {"","","Bishop","Farnsworth","Dunham","Lee"};
+        String useNam = userName.getText().toString();
+        String passWrd = password.getText().toString();
 
-        onView(withId(R.id.UserName)).check(matches(withHint("Username")));
+
+        onView(withId(R.id.UserName)).check(matches(withHint("useNam")));
         onView(withId(R.id.password)).check(matches(withHint("Password")));
         onView(withId(R.id.text_signin)).check(matches(withText("Sign In")));
         int i=4;
         //for (int i=0;i<unMock.length;i++) {
-            onView(withId(R.id.UserName)).perform(typeText(unMock[i]));
-            onView(withId(R.id.password)).perform(typeText(pwMock[i]));
+            onView(withId(R.id.UserName)).perform(typeText(useNam));
+            onView(withId(R.id.password)).perform(typeText(passWrd));
             onView(withId(R.id.layout_signin)).perform(click());
             String msg = "Sign In Unsuccessful";
             if (i == 4)
